@@ -16,6 +16,11 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "cookie-token-parser",
   description: "Convert Chrome DevTools cookie headers into auth JSON.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 // Component: Global document shell and typography setup.
