@@ -1,12 +1,13 @@
 // Imports
-import type { FC } from "react";
-
 import { Check, Clipboard } from "lucide-react";
-import { Highlight, type PrismTheme } from "prism-react-renderer";
+import { Highlight } from "prism-react-renderer";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+
+import type { PrismTheme } from "prism-react-renderer";
+import type { FC } from "react";
 
 // Types
 type JsonOutputProps = {

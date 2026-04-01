@@ -1,7 +1,7 @@
 // Imports
-import type { ComponentProps, FC } from "react";
-
 import { cn } from "@/lib/utils";
+
+import type { ComponentProps, FC } from "react";
 
 // Types
 type CardProps = ComponentProps<"div"> & { size?: "default" | "sm" };

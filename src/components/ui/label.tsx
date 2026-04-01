@@ -1,9 +1,9 @@
 "use client";
 
 // Imports
-import type { ComponentProps, FC } from "react";
-
 import { cn } from "@/lib/utils";
+
+import type { ComponentProps, FC } from "react";
 
 /*
  * Component: Renders a styled label element for form controls.

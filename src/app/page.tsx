@@ -1,8 +1,8 @@
 // Imports
-import type { FC } from "react";
-
 import { TokenConverter } from "@/components/token-converter";
 import { cn } from "@/lib/utils";
+
+import type { FC } from "react";
 
 /*
  * Component: Main landing page with responsive app shell.

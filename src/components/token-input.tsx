@@ -1,9 +1,9 @@
 // Imports
-import type { FC } from "react";
-
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+
+import type { FC } from "react";
 
 // Types
 type TokenInputProps = {

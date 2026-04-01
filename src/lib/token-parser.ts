@@ -1,7 +1,3 @@
-/*
- * Utility: Centralizes token parsing and output JSON formatting.
- */
-
 // Imports
 import authTemplate from "@/lib/auth-template.json";
 

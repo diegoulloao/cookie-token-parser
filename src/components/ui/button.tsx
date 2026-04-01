@@ -1,12 +1,13 @@
 "use client";
 
 // Imports
-import type { FC } from "react";
-
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+
+import type { VariantProps } from "class-variance-authority";
+import type { FC } from "react";
 
 // Constants
 const buttonVariants = cva(

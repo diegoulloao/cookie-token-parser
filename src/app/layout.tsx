@@ -1,12 +1,12 @@
 // Imports
-import type { Metadata } from "next";
-import type { FC, ReactNode } from "react";
-
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
+
+import type { Metadata } from "next";
+import type { FC, ReactNode } from "react";
 
 // Constants
 const plusJakartaSans = Plus_Jakarta_Sans({

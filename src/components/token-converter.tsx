@@ -1,7 +1,6 @@
 "use client";
 
 // Imports
-import type { FC } from "react";
 import { useMemo, useState } from "react";
 
 import { JsonOutput } from "@/components/json-output";
@@ -9,6 +8,8 @@ import { TokenInput } from "@/components/token-input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { buildAuthJson, stringifyAuthJson } from "@/lib/token-parser";
 import { cn } from "@/lib/utils";
+
+import type { FC } from "react";
 
 // Constants
 const COPY_RESET_DELAY_MS = 1800;
