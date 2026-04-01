@@ -1,7 +1,11 @@
-// Utility: Centralizes token parsing and output JSON formatting.
+/*
+ * Utility: Centralizes token parsing and output JSON formatting.
+ */
 
+// Imports
 import authTemplate from "@/lib/auth-template.json";
 
+// Types
 type SameSiteValue = "Lax" | "Strict" | "None";
 
 type AuthCookieName = "accessToken" | "refreshToken" | "idToken";
@@ -31,9 +35,17 @@ type AuthTemplate = {
   origins: [];
 };
 
+// Constants
+const COOKIE_HEADER_ONLY_REGEX = /^cookie:?$/i;
+const COOKIE_PREFIX_REGEX = /^cookie\s*:/i;
+const COOKIE_PREFIX_WITH_SPACING_REGEX = /^cookie\s*:\s*/i;
+const TEMPLATE_PLACEHOLDER_REGEX = /^\{\{(\w+)\}\}$/;
+
 const parsedAuthTemplate = authTemplate as AuthTemplate;
 
-// Utility function: Normalizes raw input to a single cookie string.
+/*
+ * Utility function: Normalizes raw input to a single cookie string.
+ */
 const normalizeCookieString = (rawInput: string): string => {
   const normalized = rawInput.trim();
   if (!normalized) {
@@ -45,19 +57,21 @@ const normalizeCookieString = (rawInput: string): string => {
     .map((line) => line.trim())
     .filter(Boolean);
 
-  if (lines.length > 1 && /^cookie:?$/i.test(lines[0])) {
+  if (lines.length > 1 && COOKIE_HEADER_ONLY_REGEX.test(lines[0])) {
     return lines.slice(1).join(" ");
   }
 
   const merged = lines.join(" ");
-  if (/^cookie\s*:/i.test(merged)) {
-    return merged.replace(/^cookie\s*:\s*/i, "");
+  if (COOKIE_PREFIX_REGEX.test(merged)) {
+    return merged.replace(COOKIE_PREFIX_WITH_SPACING_REGEX, "");
   }
 
   return merged;
 };
 
-// Utility function: Parses a cookie header into a key/value map.
+/*
+ * Utility function: Parses a cookie header into a key/value map.
+ */
 const parseCookieMap = (cookieString: string): Map<string, string> => {
   const tokenMap = new Map<string, string>();
 
@@ -82,9 +96,11 @@ const parseCookieMap = (cookieString: string): Map<string, string> => {
   return tokenMap;
 };
 
-// Utility function: Resolves a token placeholder from the template value.
+/*
+ * Utility function: Resolves a token placeholder from the template value.
+ */
 const resolveTemplateValue = (templateValue: string, tokenMap: Map<string, string>): string => {
-  const placeholderMatch = templateValue.match(/^\{\{(\w+)\}\}$/);
+  const placeholderMatch = templateValue.match(TEMPLATE_PLACEHOLDER_REGEX);
   if (!placeholderMatch) {
     return templateValue;
   }
@@ -92,7 +108,9 @@ const resolveTemplateValue = (templateValue: string, tokenMap: Map<string, strin
   return tokenMap.get(placeholderMatch[1]) ?? "";
 };
 
-// Utility function: Builds the auth JSON object from any raw cookie text.
+/*
+ * Utility function: Builds the auth JSON object from any raw cookie text.
+ */
 export const buildAuthJson = (rawInput: string): AuthJson => {
   const normalizedCookieString = normalizeCookieString(rawInput);
   const tokenMap = parseCookieMap(normalizedCookieString);
@@ -106,7 +124,9 @@ export const buildAuthJson = (rawInput: string): AuthJson => {
   };
 };
 
-// Utility function: Returns stable, pretty JSON for display/copy actions.
+/*
+ * Utility function: Returns stable, pretty JSON for display/copy actions.
+ */
 export const stringifyAuthJson = (authJson: AuthJson): string => {
   return JSON.stringify(authJson, null, 2);
 };

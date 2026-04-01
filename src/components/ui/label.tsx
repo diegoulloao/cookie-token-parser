@@ -1,10 +1,14 @@
 "use client";
 
-import * as React from "react";
+// Imports
+import type { ComponentProps, FC } from "react";
 
 import { cn } from "@/lib/utils";
 
-const Label = ({ className, ...props }: React.ComponentProps<"label">) => {
+/*
+ * Component: Renders a styled label element for form controls.
+ */
+const Label: FC<ComponentProps<"label">> = ({ className, ...props }) => {
   return (
     <label
       data-slot="label"
@@ -17,4 +21,5 @@ const Label = ({ className, ...props }: React.ComponentProps<"label">) => {
   );
 };
 
+// Exports
 export { Label };

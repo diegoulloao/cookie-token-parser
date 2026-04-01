@@ -1,8 +1,12 @@
-import * as React from "react";
+// Imports
+import type { ComponentProps, FC } from "react";
 
 import { cn } from "@/lib/utils";
 
-const Textarea = ({ className, ...props }: React.ComponentProps<"textarea">) => {
+/*
+ * Component: Renders a styled textarea with accessible interaction states.
+ */
+const Textarea: FC<ComponentProps<"textarea">> = ({ className, ...props }) => {
   return (
     <textarea
       data-slot="textarea"
@@ -15,4 +19,5 @@ const Textarea = ({ className, ...props }: React.ComponentProps<"textarea">) => 
   );
 };
 
+// Exports
 export { Textarea };

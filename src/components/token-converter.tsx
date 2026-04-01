@@ -1,7 +1,7 @@
 "use client";
 
-// Component: Orchestrates input parsing, JSON generation, and clipboard copy UX.
-
+// Imports
+import type { FC } from "react";
 import { useMemo, useState } from "react";
 
 import { JsonOutput } from "@/components/json-output";
@@ -10,36 +10,50 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { buildAuthJson, stringifyAuthJson } from "@/lib/token-parser";
 import { cn } from "@/lib/utils";
 
-export const TokenConverter = () => {
+// Constants
+const COPY_RESET_DELAY_MS = 1800;
+
+/*
+ * Component: Orchestrates input parsing, JSON generation, and clipboard copy UX.
+ */
+const TokenConverter: FC = () => {
+  // States
   const [rawInput, setRawInput] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
+  // Memoized values
   const generatedJson = useMemo(() => {
     const authJson = buildAuthJson(rawInput);
     return stringifyAuthJson(authJson);
   }, [rawInput]);
 
-  // Event handler: Copies generated JSON to the clipboard and updates button state.
+  /*
+   * Event handler: Copies generated JSON to the clipboard and updates button state.
+   */
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(generatedJson);
       setIsCopied(true);
-      window.setTimeout(() => setIsCopied(false), 1800);
+      window.setTimeout(() => setIsCopied(false), COPY_RESET_DELAY_MS);
     } catch {
       setIsCopied(false);
     }
   };
 
-  // Event handler: Resets copy state whenever user edits the input.
+  /*
+   * Event handler: Resets copy state whenever user edits the input.
+   */
   const handleInputChange = (value: string) => {
     setRawInput(value);
     setIsCopied(false);
   };
 
+  // Render
   return (
     <Card
       className={cn("border-0 bg-card/85 py-0 shadow-xl ring-1 ring-slate-200 backdrop-blur-sm")}
     >
+      {/* Header */}
       <CardHeader className="px-6 pt-6">
         <CardTitle className="text-xl">Token to Auth JSON Converter</CardTitle>
         <CardDescription>
@@ -47,6 +61,8 @@ export const TokenConverter = () => {
           extract accessToken, refreshToken, and idToken into a clean JSON payload.
         </CardDescription>
       </CardHeader>
+
+      {/* Content */}
       <CardContent className="px-6 pb-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
           <TokenInput value={rawInput} onChange={handleInputChange} />
@@ -56,3 +72,6 @@ export const TokenConverter = () => {
     </Card>
   );
 };
+
+// Exports
+export { TokenConverter };
