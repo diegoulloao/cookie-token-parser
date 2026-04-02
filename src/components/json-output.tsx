@@ -1,4 +1,3 @@
-// Imports
 import { Check, Clipboard } from "lucide-react";
 import { Highlight } from "prism-react-renderer";
 
@@ -9,14 +8,12 @@ import { cn } from "@/lib/utils";
 import type { PrismTheme } from "prism-react-renderer";
 import type { FC } from "react";
 
-// Types
 type JsonOutputProps = {
   value: string;
   copied: boolean;
   onCopy: () => void;
 };
 
-// Constants
 const JSON_THEME: PrismTheme = {
   plain: {
     color: "oklch(0.34 0.03 257)",
@@ -60,19 +57,17 @@ const JSON_THEME: PrismTheme = {
  * Component: Displays generated JSON and provides clipboard copy action.
  */
 const JsonOutput: FC<JsonOutputProps> = ({ value, copied, onCopy }) => {
-  // Render
   return (
     <div className="space-y-3">
-      {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <Label htmlFor="json-output">Generated auth JSON</Label>
+
         <Button type="button" variant="outline" onClick={onCopy}>
           {copied ? <Check /> : <Clipboard />}
           {copied ? "Copied" : "Copy JSON"}
         </Button>
       </div>
 
-      {/* Highlighted JSON output */}
       <div id="json-output" aria-readonly role="textbox" className={cn("font-mono text-xs")}>
         <div
           className={cn(
@@ -101,5 +96,4 @@ const JsonOutput: FC<JsonOutputProps> = ({ value, copied, onCopy }) => {
   );
 };
 
-// Exports
 export { JsonOutput };

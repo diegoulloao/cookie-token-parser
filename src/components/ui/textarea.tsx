@@ -1,4 +1,3 @@
-// Imports
 import { cn } from "@/lib/utils";
 
 import type { ComponentProps, FC } from "react";
@@ -19,5 +18,4 @@ const Textarea: FC<ComponentProps<"textarea">> = ({ className, ...props }) => {
   );
 };
 
-// Exports
 export { Textarea };

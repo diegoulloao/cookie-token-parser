@@ -1,11 +1,9 @@
-// Imports
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 import type { FC } from "react";
 
-// Types
 type TokenInputProps = {
   value: string;
   onChange: (value: string) => void;
@@ -15,13 +13,10 @@ type TokenInputProps = {
  * Component: Collects raw cookie header text from the user.
  */
 const TokenInput: FC<TokenInputProps> = ({ value, onChange }) => {
-  // Render
   return (
     <div className="space-y-3">
-      {/* Field label */}
       <Label htmlFor="token-input">Request Headers Cookie value</Label>
 
-      {/* Field input */}
       <Textarea
         id="token-input"
         value={value}
@@ -33,7 +28,6 @@ const TokenInput: FC<TokenInputProps> = ({ value, onChange }) => {
         spellCheck={false}
       />
 
-      {/* Helper text */}
       <p className="text-xs text-muted-foreground">
         You can paste only the value, or a full line that starts with{" "}
         <span className="font-mono">Cookie</span> or <span className="font-mono">Cookie:</span>.
@@ -42,5 +36,4 @@ const TokenInput: FC<TokenInputProps> = ({ value, onChange }) => {
   );
 };
 
-// Exports
 export { TokenInput };

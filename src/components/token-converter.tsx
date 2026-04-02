@@ -1,6 +1,5 @@
 "use client";
 
-// Imports
 import { useMemo, useState } from "react";
 
 import { JsonOutput } from "@/components/json-output";
@@ -11,7 +10,6 @@ import { cn } from "@/lib/utils";
 
 import type { FC } from "react";
 
-// Constants
 const COPY_RESET_DELAY_MS = 1800;
 
 /*
@@ -22,7 +20,6 @@ const TokenConverter: FC = () => {
   const [rawInput, setRawInput] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
-  // Memoized values
   const generatedJson = useMemo(() => {
     const authJson = buildAuthJson(rawInput);
     return stringifyAuthJson(authJson);
@@ -49,21 +46,19 @@ const TokenConverter: FC = () => {
     setIsCopied(false);
   };
 
-  // Render
   return (
     <Card
       className={cn("border-0 bg-card/85 py-0 shadow-xl ring-1 ring-slate-200 backdrop-blur-sm")}
     >
-      {/* Header */}
       <CardHeader className="px-6 pt-6">
         <CardTitle className="text-xl">Token to Auth JSON Converter</CardTitle>
+
         <CardDescription>
           Paste the raw value from Request Headers <span className="font-mono">Cookie</span> and
           extract accessToken, refreshToken, and idToken into a clean JSON payload.
         </CardDescription>
       </CardHeader>
 
-      {/* Content */}
       <CardContent className="px-6 pb-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
           <TokenInput value={rawInput} onChange={handleInputChange} />
@@ -74,5 +69,4 @@ const TokenConverter: FC = () => {
   );
 };
 
-// Exports
 export { TokenConverter };

@@ -1,6 +1,5 @@
 "use client";
 
-// Imports
 import { cn } from "@/lib/utils";
 
 import type { ComponentProps, FC } from "react";
@@ -21,5 +20,4 @@ const Label: FC<ComponentProps<"label">> = ({ className, ...props }) => {
   );
 };
 
-// Exports
 export { Label };

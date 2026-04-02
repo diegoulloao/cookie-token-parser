@@ -1,4 +1,3 @@
-// Imports
 import authTemplate from "@/lib/auth-template.json";
 
 // Types
@@ -44,6 +43,7 @@ const parsedAuthTemplate = authTemplate as AuthTemplate;
  */
 const normalizeCookieString = (rawInput: string): string => {
   const normalized = rawInput.trim();
+
   if (!normalized) {
     return "";
   }
@@ -58,6 +58,7 @@ const normalizeCookieString = (rawInput: string): string => {
   }
 
   const merged = lines.join(" ");
+
   if (COOKIE_PREFIX_REGEX.test(merged)) {
     return merged.replace(COOKIE_PREFIX_WITH_SPACING_REGEX, "");
   }
@@ -77,6 +78,7 @@ const parseCookieMap = (cookieString: string): Map<string, string> => {
     .filter(Boolean)
     .forEach((segment) => {
       const separatorIndex = segment.indexOf("=");
+
       if (separatorIndex <= 0) {
         return;
       }
@@ -97,6 +99,7 @@ const parseCookieMap = (cookieString: string): Map<string, string> => {
  */
 const resolveTemplateValue = (templateValue: string, tokenMap: Map<string, string>): string => {
   const placeholderMatch = templateValue.match(TEMPLATE_PLACEHOLDER_REGEX);
+
   if (!placeholderMatch) {
     return templateValue;
   }
